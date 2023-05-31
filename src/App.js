@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 
-import { Header } from "components";
+import { Footer, Header } from "components";
 
 import "./App.scss";
 import "swiper/swiper.min.css";
@@ -10,6 +10,7 @@ function App() {
     <>
       <BrowserRouter>
         <Header />
+        <Footer />
       </BrowserRouter>
     </>
   );
