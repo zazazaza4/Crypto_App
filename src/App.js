@@ -1,5 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 
+import { RoutesCustom } from "config";
 import { Footer, Header } from "components";
 
 import "./App.scss";
@@ -10,6 +11,7 @@ function App() {
     <>
       <BrowserRouter>
         <Header />
+        <RoutesCustom />
         <Footer />
       </BrowserRouter>
     </>
