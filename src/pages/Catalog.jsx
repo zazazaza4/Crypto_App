@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
-import { CryptoGrid } from "components";
-import { PageHeader } from "components";
+import { PageHeader, CryptoList } from "components";
 
 const Catalog = () => {
   const { category } = useParams();
@@ -9,7 +8,9 @@ const Catalog = () => {
     <>
       <PageHeader>{category.toUpperCase()}</PageHeader>
       <div className="container">
-        <div className="section md-3"></div>
+        <div className="section md-3">
+          <CryptoList category={category} />
+        </div>
       </div>
     </>
   );
