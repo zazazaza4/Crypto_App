@@ -15,8 +15,8 @@ const headerNav = [
     path: "/coins",
   },
   {
-    display: "NFTS",
-    path: "/nfts",
+    display: "Exchanges",
+    path: "/exchanges",
   },
 ];
 
@@ -49,7 +49,7 @@ export const Header = () => {
       <div className="header__wrap container">
         <div className="logo">
           <img src={logo} alt="logo" />
-          <Link to="/">vCrypto</Link>
+          <Link to="/"> vCrypto</Link>
         </div>
         <div className="header__nav">
           {headerNav.map((elem, index) => (
