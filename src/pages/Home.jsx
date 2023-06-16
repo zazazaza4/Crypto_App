@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CryptoSlide, OutlineButton, CryptoList } from "components";
+import { CryptoSlide, OutlineButton, CryptoCarousel } from "components";
 import { useHomeStore } from "stores";
 
 const Home = () => {
@@ -16,7 +16,7 @@ const Home = () => {
               <OutlineButton className="small">View more</OutlineButton>
             </Link>
           </div>
-          <CryptoList category={"coins"} />
+          <CryptoCarousel category={"coins"} />
         </div>
 
         <div className="section mb-3">
@@ -26,7 +26,7 @@ const Home = () => {
               <OutlineButton className="small">View more</OutlineButton>
             </Link>
           </div>
-          <CryptoList category={"coins"} />
+          <CryptoCarousel category={"coins"} />
         </div>
       </div>
     </>
