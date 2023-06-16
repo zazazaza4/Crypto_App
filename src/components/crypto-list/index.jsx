@@ -1,30 +1,44 @@
-import PropsTypes from "prop-types";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 
-import { SwiperSlide, Swiper } from "swiper/react";
-import { CryptoCard } from "components";
+import { CryptoSearch, OutlineButton, CryptoListItem } from "components";
+
 import data from "../../data.json";
 
 import "./crypto-list.scss";
 
 export const CryptoList = (props) => {
   const [items, setItems] = useState(data);
+  const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0);
+
+  const { keyword } = useParams();
 
   return (
-    <div className="crypto-list">
-      <Swiper grabCursor={true} spaceBetween={10} slidesPerView={"auto"}>
+    <>
+      <div className="section mb-3">
+        <CryptoSearch category={props.category} keyword={keyword} />
+      </div>
+      <div className="crypto-list">
         {items.map((item, index) => (
-          <SwiperSlide key={index}>
-            <CryptoCard item={item} category={props.category} />
-          </SwiperSlide>
+          <CryptoListItem
+            category={props.category}
+            item={item}
+            key={item.id + index}
+          />
         ))}
-      </Swiper>
-    </div>
+      </div>
+      {page < totalPage ? (
+        <div className="crypto-list__loadmore">
+          <OutlineButton className="small">Load more</OutlineButton>
+        </div>
+      ) : null}
+    </>
   );
 };
 
 CryptoList.propTypes = {
-  category: PropsTypes.string.isRequired,
-  type: PropsTypes.string.isRequired,
-  id: PropsTypes.string,
+  category: PropTypes.string.isRequired,
+  keyword: PropTypes.string,
 };
