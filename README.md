@@ -11,7 +11,7 @@
 Clone this repo
 
 ```sh
-$ git clone this
-$ cd client
+$ git clone git@github.com:zazazaza4/Crypto_App.git
+$ cd Crypto_App
 $ yarn install or npm install
 ```
