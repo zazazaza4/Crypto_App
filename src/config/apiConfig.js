@@ -1,5 +1,5 @@
 const apiConfig = {
-  baseUrl: "https://api.themoviedb.org/3/",
+  baseUrl: `https://vast-cyan-agouti-gown.cyclic.app`,
   key: "",
 };
 
