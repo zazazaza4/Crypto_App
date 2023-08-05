@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 
-import { RoutesCustom } from "config";
-import { Footer, Header } from "components";
+import RoutesCustom from "components/routes";
+import { Footer, Header } from "components/common";
 
 import "./App.scss";
 import "swiper/swiper.min.css";
