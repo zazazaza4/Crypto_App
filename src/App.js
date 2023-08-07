@@ -11,7 +11,9 @@ function App() {
     <>
       <BrowserRouter>
         <Header />
-        <RoutesCustom />
+        <main id="main">
+          <RoutesCustom />
+        </main>
         <Footer />
       </BrowserRouter>
     </>
