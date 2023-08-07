@@ -1,4 +1,4 @@
-export const loadingState = {
+export const statusEnum = {
   IDLE: "idle",
   LOADING: "loading",
   LOADED: "loaded",
