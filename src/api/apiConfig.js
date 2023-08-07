@@ -1,5 +1,5 @@
 const apiConfig = {
-  baseUrl: `https://vast-cyan-agouti-gown.cyclic.app`,
+  baseUrl: process.env.REACT_APP_API_URL,
   key: "",
 };
 
