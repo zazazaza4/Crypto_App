@@ -1,8 +1,14 @@
 import { useParams } from "react-router-dom";
-import { PageHeader, CryptoList } from "components";
+import { useEffect } from "react";
+
+import { PageHeader, CryptoList } from "components/common";
 
 const Catalog = () => {
   const { category } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [category]);
 
   return (
     <>
