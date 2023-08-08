@@ -9,7 +9,7 @@ import "./crypto-carousel.scss";
 export const CryptoCarousel = (props) => {
   return (
     <div className="crypto-carousel">
-      <Swiper grabCursor={true} spaceBetween={10} slidesPerView={"auto"}>
+      <Swiper grabCursor={true} spaceBetween={40} slidesPerView={"auto"}>
         {props.items.map((item, index) => (
           <SwiperSlide key={index}>
             <CryptoCard item={item} category={props.category} />
