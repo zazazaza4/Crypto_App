@@ -3,15 +3,14 @@ import create from "zustand";
 import { statusEnum } from "utils/enums";
 
 export const useStatusStore = create((set) => ({
-  status: statusEnum.IDlE,
-  setLoading: (loading) => set({ loading }),
+  status: statusEnum.IDLE,
   handleAsyncOperation: async (asyncFunction) => {
     try {
-      set({ loading: statusEnum.LOADING });
+      set({ status: statusEnum.LOADING });
       await asyncFunction();
-      set({ loading: statusEnum.LOADED });
+      set({ status: statusEnum.LOADED });
     } catch (error) {
-      set({ loading: statusEnum.ERROR });
+      set({ status: statusEnum.ERROR });
     }
   },
 }));
