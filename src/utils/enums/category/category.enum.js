@@ -1,6 +1,4 @@
-const categoryEnum = {
+export const categoryEnum = {
   COINS: "coins",
-  EXCHANGE: "exchange",
+  EXCHANGE: "exchanges",
 };
-
-export default categoryEnum;
