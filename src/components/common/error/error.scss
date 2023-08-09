@@ -1,0 +1,16 @@
+@use "../../../scss/" as *;
+
+.error {
+  color: $txt-color;
+  height: 20vh;
+  padding: 30px 20px;
+
+  h3 {
+    font-size: 3rem;
+  }
+
+  p {
+    font-size: 2rem;
+    opacity: 0.85;
+  }
+}
