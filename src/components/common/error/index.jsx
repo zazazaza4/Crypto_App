@@ -1,0 +1,22 @@
+import PropTypes from "prop-types";
+
+import "./error.scss";
+
+const ErrorComponent = ({ feedback }) => {
+  return (
+    <div className="error">
+      <h3>Sorry, unexpected error</h3>
+      <p>
+        We are facing an internal server error. Our experts are trying to fix
+        problem. Please try again or wait for some time.
+      </p>
+      <p>{feedback}</p>
+    </div>
+  );
+};
+
+ErrorComponent.propTypes = {
+  feedback: PropTypes.string,
+};
+
+export { ErrorComponent };
