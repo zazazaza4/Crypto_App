@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { OutlineButton, Button } from "components/common";
+import { categoryEnum } from "utils/enums";
 
 import "./crypto-slide.scss";
 
@@ -26,7 +27,9 @@ export const CryptoSlideItem = ({ item, className }) => {
             <span className="btc">{item.priceBtc} BTC</span>
           </div>
           <div className="btns">
-            <Button onClick={() => navigate("/crypto/" + item.id)}>
+            <Button
+              onClick={() => navigate(`/${categoryEnum.COINS}/` + item.id)}
+            >
               More info
             </Button>
             <OutlineButton onClick={navigateToBuy}>Buy now</OutlineButton>
