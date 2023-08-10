@@ -10,6 +10,9 @@ import { CryptoCard } from "./common/crypto-card";
 import { CryptoCarousel } from "./common/crypto-carousel";
 import { CryptoList } from "./common/crypto-list";
 import { CryptoListItem } from "./common/crypto-list/CryptoListItem";
+import { Spinner } from "./common/spinner";
+import { ErrorBoundary } from "./common/error/errorBoundary";
+import { ErrorComponent } from "./common/error";
 
 export {
   Header,
@@ -25,4 +28,7 @@ export {
   CryptoCarousel,
   CryptoList,
   CryptoListItem,
+  Spinner,
+  ErrorBoundary,
+  ErrorComponent,
 };
