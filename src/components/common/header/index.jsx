@@ -24,7 +24,9 @@ export const Header = () => {
   const { pathname } = useLocation();
   const headerRef = useRef(null);
 
-  const active = headerNav.findIndex((e) => e.path === pathname);
+  const parts = pathname.split("/");
+  const path = `/${parts[1]}`;
+  const active = headerNav.findIndex((e) => e.path === path);
 
   useEffect(() => {
     const shrinkHeader = () => {
