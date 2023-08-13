@@ -1,23 +1,45 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import { CryptoSearch, OutlineButton, CryptoListItem } from "components/common";
-import { useCoinsStore } from "stores";
-import { categoryEnum } from "utils/enums";
+import {
+  CryptoSearch,
+  OutlineButton,
+  CryptoListItem,
+  Spinner,
+  ErrorComponent,
+} from "components/common";
+import { storesCategory, useStatusStore } from "stores";
+import { categoryEnum, statusEnum } from "utils/enums";
 
 import "./crypto-list.scss";
 
 export const CryptoList = (props) => {
-  const store = useCoinsStore();
+  const store = storesCategory[props.category]();
+  const { status, handleAsyncOperation } = useStatusStore();
 
-  const [page, setPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(20);
   const { keyword } = useParams();
 
   useEffect(() => {
-    // store.fetchCoins();
-  }, []);
+    const { fetchList } = store;
+    handleAsyncOperation(fetchList);
+  }, [props.category]);
+
+  const renderCryptoList = () => {
+    if (status === statusEnum.LOADING) {
+      return <Spinner />;
+    } else if (status === statusEnum.ERROR) {
+      return <ErrorComponent />;
+    }
+
+    return store.list.map((item, index) => (
+      <CryptoListItem
+        category={props.category}
+        item={item}
+        key={item.id + index}
+      />
+    ));
+  };
 
   return (
     <>
@@ -25,17 +47,14 @@ export const CryptoList = (props) => {
         <CryptoSearch category={props.category} keyword={keyword} />
       </div>
       <div className="crypto-list">
-        {store.list.map((item, index) => (
-          <CryptoListItem
-            category={props.category}
-            item={item}
-            key={item.id + index}
-          />
-        ))}
+        {renderCryptoList()}
+        {store.error && <ErrorComponent />}
       </div>
-      {store.page < store.totalPage ? (
+      {store.canLoadMore ? (
         <div className="crypto-list__loadmore">
-          <OutlineButton className="small">Load more</OutlineButton>
+          <OutlineButton onClick={store.loadMore} className="small">
+            Load more
+          </OutlineButton>
         </div>
       ) : null}
     </>
