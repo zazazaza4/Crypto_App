@@ -41,7 +41,7 @@ export const CryptoSearch = (props) => {
         placeholder="Enter keyword"
         value={query}
         onChange={(e) => {
-          setQuery(e, props.category);
+          setQuery(e.target.value);
         }}
       />
       <Button className="small" onClick={() => {}}>
