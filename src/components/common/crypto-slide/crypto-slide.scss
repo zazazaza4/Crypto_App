@@ -2,6 +2,8 @@
 
 .crypto-slide {
   margin-bottom: 3rem;
+  min-height: 300px;
+  position: relative;
 
   &__item {
     padding: 9rem 0;
@@ -140,4 +142,11 @@
       }
     }
   }
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
 }
