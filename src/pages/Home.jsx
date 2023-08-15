@@ -8,15 +8,15 @@ import {
 } from "components/common";
 import { categoryEnum } from "utils/enums";
 import { useEffect } from "react";
-import { useCoinsStore, useExchangeStore } from "stores";
+import { useCoinsStore, useExchangesStore } from "stores";
 
 const Home = () => {
   const coins = useCoinsStore();
-  const exchange = useExchangeStore();
+  const exchanges = useExchangesStore();
 
   useEffect(() => {
     coins.fetchList();
-    exchange.fetchList();
+    exchanges.fetchList();
   }, []);
 
   useEffect(() => {
@@ -47,14 +47,14 @@ const Home = () => {
         <div className="section mb-3">
           <div className="section__header mb-2">
             <h2>Exchanges List</h2>
-            <Link to={`/${categoryEnum.EXCHANGE}`}>
+            <Link to={`/${categoryEnum.EXCHANGES}`}>
               <OutlineButton className="small">View more</OutlineButton>
             </Link>
           </div>
           <ErrorBoundary>
             <CryptoCarousel
-              category={categoryEnum.EXCHANGE}
-              items={exchange.list || exchange.list.slice(0, 10)}
+              category={categoryEnum.EXCHANGES}
+              items={exchanges.list || exchanges.list.slice(0, 10)}
             />
           </ErrorBoundary>
         </div>
