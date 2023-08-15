@@ -2,7 +2,11 @@ import PropTypes from "prop-types";
 
 import "./error.scss";
 
-const ErrorComponent = ({ feedback }) => {
+const ErrorComponent = ({ feedback, children }) => {
+  if (children) {
+    return <div className="error">{children}</div>;
+  }
+
   return (
     <div className="error">
       <h3>Sorry, unexpected error</h3>
@@ -17,6 +21,7 @@ const ErrorComponent = ({ feedback }) => {
 
 ErrorComponent.propTypes = {
   feedback: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export { ErrorComponent };
