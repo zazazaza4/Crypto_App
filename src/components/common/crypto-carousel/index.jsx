@@ -9,13 +9,17 @@ import "./crypto-carousel.scss";
 export const CryptoCarousel = (props) => {
   return (
     <div className="crypto-carousel">
-      <Swiper grabCursor={true} spaceBetween={40} slidesPerView={"auto"}>
-        {props.items.map((item, index) => (
-          <SwiperSlide key={index}>
-            <CryptoCard item={item} category={props.category} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {props.items.length === 0 ? (
+        <p className="no-items">No items to display.</p>
+      ) : (
+        <Swiper grabCursor={true} spaceBetween={40} slidesPerView={"auto"}>
+          {props.items.map((item, index) => (
+            <SwiperSlide key={index}>
+              <CryptoCard item={item} category={props.category} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </div>
   );
 };
