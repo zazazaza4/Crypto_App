@@ -1,5 +1,11 @@
 @use "../../../scss/" as *;
 
+.no-items {
+  text-align: center;
+  font-size: 2.5rem;
+  padding: 2rem 0;
+}
+
 .crypto-carousel {
   .swiper-slide {
     width: 15%;
