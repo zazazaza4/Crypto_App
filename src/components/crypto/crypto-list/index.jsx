@@ -1,14 +1,8 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import {
-  CryptoSearch,
-  OutlineButton,
-  CryptoListItem,
-  Spinner,
-  ErrorComponent,
-} from "components/common";
+import { OutlineButton, Spinner, ErrorComponent } from "components/common";
+import { CryptoListItem, CryptoSearch } from "components/crypto";
 import { storesCategory, useStatusStore } from "stores";
 import { categoryEnum, statusEnum } from "utils/enums";
 
@@ -17,8 +11,6 @@ import "./crypto-list.scss";
 export const CryptoList = (props) => {
   const store = storesCategory[props.category]();
   const { status, handleAsyncOperation } = useStatusStore();
-
-  const { keyword } = useParams();
 
   useEffect(() => {
     const { fetchList } = store;
@@ -32,7 +24,7 @@ export const CryptoList = (props) => {
       return <ErrorComponent />;
     }
 
-    return store.list.map((item, index) => (
+    return store.filteredList.map((item, index) => (
       <CryptoListItem
         category={props.category}
         item={item}
@@ -44,7 +36,7 @@ export const CryptoList = (props) => {
   return (
     <>
       <div className="section mb-3">
-        <CryptoSearch category={props.category} keyword={keyword} />
+        <CryptoSearch category={props.category} />
       </div>
       <div className="crypto-list">
         {renderCryptoList()}

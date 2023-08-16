@@ -1,8 +1,8 @@
 import PropsTypes from "prop-types";
-
 import { SwiperSlide, Swiper } from "swiper/react";
+
+import { CryptoCard } from "components/crypto";
 import { categoryEnum } from "utils/enums";
-import { CryptoCard } from "components/common";
 
 import "./crypto-carousel.scss";
 

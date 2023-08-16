@@ -4,22 +4,23 @@ import { useNavigate } from "react-router-dom";
 
 import { Button, Input } from "components/common";
 import { categoryEnum } from "utils/enums";
-import { useCoinsStore } from "stores";
+import { storesCategory } from "stores";
 
 import "./crypto-search.scss";
 
 export const CryptoSearch = (props) => {
   const navigate = useNavigate();
-  const { query, setQuery } = useCoinsStore();
-  const [keyword, setKeyword] = useState(props.keyword ? props.keyword : "");
+  const { query, setQuery } = storesCategory[props.category]();
 
   const goToSearch = useCallback(() => {
-    if (keyword.trim().length > 0) {
-      navigate(`/${categoryEnum[props.category]}/search/${query}`, {
+    if (query.trim().length > 0) {
+      const category = categoryEnum[props.category.toUpperCase()];
+
+      navigate(`/${category}/search/${query}`, {
         replace: true,
       });
     }
-  }, [keyword, props.category, navigate]);
+  }, [props.category, navigate]);
 
   useEffect(() => {
     const enterEvent = (e) => {
@@ -32,7 +33,7 @@ export const CryptoSearch = (props) => {
     return () => {
       document.removeEventListener("keyup", enterEvent);
     };
-  }, [keyword, goToSearch]);
+  }, [goToSearch]);
 
   return (
     <div className="crypto-search">
@@ -41,10 +42,10 @@ export const CryptoSearch = (props) => {
         placeholder="Enter keyword"
         value={query}
         onChange={(e) => {
-          setQuery(e.target.value);
+          setQuery(e);
         }}
       />
-      <Button className="small" onClick={() => {}}>
+      <Button className="small" onClick={goToSearch}>
         Search
       </Button>
     </div>

@@ -1,16 +1,13 @@
 import { Link } from "react-router-dom";
 
-import {
-  CryptoSlide,
-  OutlineButton,
-  CryptoCarousel,
-  ErrorBoundary,
-} from "components/common";
+import { OutlineButton, ErrorBoundary } from "components/common";
+import { CryptoCarousel, CryptoSlide } from "components/crypto";
+
 import { categoryEnum } from "utils/enums";
 import { useEffect } from "react";
 import { useCoinsStore, useExchangesStore } from "stores";
 
-const Home = () => {
+export const Home = () => {
   const coins = useCoinsStore();
   const exchanges = useExchangesStore();
 
@@ -62,5 +59,3 @@ const Home = () => {
     </>
   );
 };
-
-export default Home;

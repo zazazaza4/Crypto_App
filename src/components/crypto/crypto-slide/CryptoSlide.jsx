@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { CryptoSlideItem, Spinner } from "components/common";
+import { Spinner } from "components/common";
+import { CryptoSlideItem } from "components/crypto";
 import { useCoinsStore, useStatusStore } from "stores";
 import { statusEnum } from "utils/enums";
 

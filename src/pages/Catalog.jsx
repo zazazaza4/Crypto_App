@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
-import { PageHeader, CryptoList } from "components/common";
+import { PageHeader } from "components/common";
+import { CryptoList } from "components/crypto";
 
-const Catalog = () => {
+export const Catalog = () => {
   const { category } = useParams();
 
   useEffect(() => {
@@ -21,5 +22,3 @@ const Catalog = () => {
     </>
   );
 };
-
-export default Catalog;
