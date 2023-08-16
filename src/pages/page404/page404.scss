@@ -1,0 +1,21 @@
+@use "../../scss/" as *;
+
+.page404 {
+  width: 80%;
+  min-height: 80vh;
+  margin: 0 auto;
+
+  @include flex(center, center);
+
+  .container {
+    @include flex(center, center);
+    flex-direction: column;
+
+    text-align: center;
+  }
+
+  img {
+    border-radius: $border-radius;
+    width: 50%;
+  }
+}

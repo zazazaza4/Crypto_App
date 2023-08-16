@@ -2,8 +2,11 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Button, ErrorComponent } from "components/common";
+import { image404 } from "assets";
 
-const Page404 = () => {
+import "./page404.scss";
+
+export const Page404 = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,7 +19,8 @@ const Page404 = () => {
 
   return (
     <div className="page404">
-      <div className="section mb-3">
+      <div className="container mb-3">
+        <img src={image404} />
         <ErrorComponent>
           <h3>Lost in cryptospace?</h3>
           <p>
@@ -29,5 +33,3 @@ const Page404 = () => {
     </div>
   );
 };
-
-export default Page404;
