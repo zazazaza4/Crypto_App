@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import { Catalog, Detail, Home } from "pages";
-import Page404 from "pages/page404/Page404";
+import { Page404, Home, Detail, Catalog } from "pages";
 
 const RoutesCustom = () => {
   return (
