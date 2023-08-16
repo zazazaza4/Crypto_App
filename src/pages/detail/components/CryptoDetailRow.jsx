@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
+import { prefixEnum } from "utils/enums";
 
-const CryptoDetailRow = ({ label, value }) => {
+const CryptoDetailRow = ({ label, value, prefix }) => {
   if (!value) {
     return null;
   }
@@ -8,7 +9,9 @@ const CryptoDetailRow = ({ label, value }) => {
   return (
     <div className="crypto-details__row">
       <h3>{label}</h3>
-      <span>{value}</span>
+      <span>
+        {value} {prefix}
+      </span>
     </div>
   );
 };
@@ -21,6 +24,7 @@ CryptoDetailRow.propTypes = {
     PropTypes.element,
     PropTypes.node,
   ]),
+  prefix: PropTypes.oneOf(Object.values(prefixEnum)).isRequired,
 };
 
 export { CryptoDetailRow };

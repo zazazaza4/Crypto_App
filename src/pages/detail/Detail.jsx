@@ -12,13 +12,13 @@ import {
 
 import { Spinner } from "components/common";
 import { useDetailStore, useStatusStore } from "stores";
-import { statusEnum } from "utils/enums";
+import { prefixEnum, statusEnum } from "utils/enums";
 
 import { CryptoDetailRow } from "./components/CryptoDetailRow";
 
 import "./detail.scss";
 
-const Detail = () => {
+export const Detail = () => {
   const { item, graphData, fetch, reset } = useDetailStore();
   const { status, handleAsyncOperation } = useStatusStore();
 
@@ -110,39 +110,53 @@ const Detail = () => {
             <CryptoDetailRow
               label="Market cap rank"
               value={item.coingecko_rank}
+              prefix={prefixEnum.NOTHING}
             />
             <CryptoDetailRow
               label="24 high"
               value={item.market_data?.high_24h?.usd}
+              prefix={prefixEnum.DOLLAR}
             />
             <CryptoDetailRow
               label="24 low"
               value={item.market_data?.low_24h?.usd}
+              prefix={prefixEnum.DOLLAR}
             />
             <CryptoDetailRow
               label="Circulating supply"
               value={item.market_data?.circulating_supply?.toFixed(6)}
+              prefix={prefixEnum.DOLLAR}
             />
             <CryptoDetailRow
               label="Circulating price"
               value={item.market_data?.current_price?.usd?.toFixed(6)}
+              prefix={prefixEnum.DOLLAR}
             />
             <CryptoDetailRow
               label="1y change"
               value={item.market_data?.price_change_percentage_1y?.toFixed(2)}
+              prefix={prefixEnum.PERCENT}
             />
             <CryptoDetailRow
               label="Trade volume 24h"
               value={item.trade_volume_24h_btc?.toFixed(2)}
+              prefix={prefixEnum.BTC}
             />
-            <CryptoDetailRow label="Trust score" value={item.trust_score} />
+
+            <CryptoDetailRow
+              label="Trust score"
+              value={item.trust_score}
+              prefix={prefixEnum.NOTHING}
+            />
             <CryptoDetailRow
               label="Trust score rank"
               value={item.trust_score_rank}
+              prefix={prefixEnum.NOTHING}
             />
             <CryptoDetailRow
               label="Year established"
               value={item.year_established}
+              prefix={prefixEnum.NOTHING}
             />
           </div>
         </>
@@ -150,5 +164,3 @@ const Detail = () => {
     </>
   );
 };
-
-export default Detail;
