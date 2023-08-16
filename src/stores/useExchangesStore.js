@@ -7,7 +7,7 @@ export const useExchangesStore = create((set) => ({
   list: [],
   filteredList: [],
   query: "",
-  error: true,
+  error: false,
   canLoadMore: false,
 
   setQuery: (value) => {
@@ -30,7 +30,7 @@ export const useExchangesStore = create((set) => ({
     try {
       const { data } = await axiosClient.get(apiRoutesEnum.EXCHANGES.LIST);
 
-      set({ list: data });
+      set({ list: data, filteredList: data });
     } catch (error) {
       set({ error: true });
     }
