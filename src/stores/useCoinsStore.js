@@ -7,6 +7,7 @@ import { apiRoutesEnum } from "utils/enums";
 export const useCoinsStore = create((set) => ({
   trending: [],
   list: [],
+  filteredList: [],
   page: 1,
   limit: 30,
   canLoadMore: true,
@@ -21,14 +22,14 @@ export const useCoinsStore = create((set) => ({
 
   searchCoins: debounce(async () => {
     try {
-      const { query, list } = useCoinsStore.getState();
+      const query = useCoinsStore.getState().query;
 
       if (query.length > 1) {
         const { data } = await axiosClient.get(
           `${apiRoutesEnum.COINS.SEARCH}?query=${query}`
         );
 
-        const coins = data.map((coin) => {
+        const list = data.map((coin) => {
           const { name, large, id } = coin;
           return {
             name,
@@ -36,9 +37,11 @@ export const useCoinsStore = create((set) => ({
             id,
           };
         });
-        set({ coins });
+        set({ list, filteredList: list });
       } else {
-        set({ coins: list, searching: false, searched: false });
+        const list = useCoinsStore.getState().list;
+
+        set({ list, filteredList: list });
       }
     } catch (error) {
       console.error("Error fetching coins:", error);
@@ -55,11 +58,12 @@ export const useCoinsStore = create((set) => ({
   },
 
   loadMore: () => {
-    const { page } = useCoinsStore.getState();
-    useCoinsStore.getState().fetchList(page + 1);
+    const page = useCoinsStore.getState().page;
+    set({ page: page + 1 });
+    useCoinsStore.getState().fetchList(true);
   },
 
-  fetchList: async () => {
+  fetchList: async (isNextPage = false) => {
     try {
       const limit = useCoinsStore.getState().limit;
 
@@ -70,7 +74,7 @@ export const useCoinsStore = create((set) => ({
         },
       });
 
-      const list = data.map(({ id, name, current_price, image }) => {
+      const newList = data.map(({ id, name, current_price, image }) => {
         return {
           id,
           name,
@@ -79,18 +83,25 @@ export const useCoinsStore = create((set) => ({
         };
       });
 
-      if (list.length < limit) {
+      if (newList.length < limit) {
         set({ canLoadMore: false });
       } else {
         set({ canLoadMore: true });
       }
 
-      set({ list });
-    } catch (error) {
-      set({ error: true });
-      set({ canLoadMore: false });
+      let list = [];
 
-      console.error(error);
+      if (isNextPage) {
+        const currentList = useCoinsStore.getState().list;
+        list = [...currentList, ...newList];
+      } else {
+        list = newList;
+      }
+
+      set({ list, filteredList: list, error: false });
+    } catch (error) {
+      set({ error: true, canLoadMore: false });
+      console.log(error);
     }
   },
 }));
