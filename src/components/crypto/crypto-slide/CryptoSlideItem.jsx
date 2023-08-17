@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { OutlineButton, Button } from "components/common";
+import { truncateString } from "utils/helpers/truncate";
 import { categoryEnum } from "utils/enums";
 
 import "./crypto-slide.scss";
@@ -21,7 +22,7 @@ export const CryptoSlideItem = ({ item, className }) => {
     >
       <div className="crypto-slide__item__content container">
         <div className="crypto-slide__item__content__info">
-          <h2 className="title"> {item.name}</h2>
+          <h2 className="title"> {truncateString(item.name)}</h2>
           <div className="prices">
             <span className="usd">$ {item.priceUsd}</span>
             <span className="btc">{item.priceBtc} BTC</span>

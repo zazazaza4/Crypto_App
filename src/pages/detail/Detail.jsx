@@ -13,6 +13,7 @@ import {
 import { Spinner } from "components/common";
 import { useDetailStore, useStatusStore } from "stores";
 import { prefixEnum, statusEnum } from "utils/enums";
+import { truncateString } from "utils/helpers/truncate";
 
 import { CryptoDetailRow } from "./components/CryptoDetailRow";
 
@@ -67,7 +68,9 @@ export const Detail = () => {
               ></div>
             </div>
             <div className="crypto-content__info">
-              <h2 className="title">{item.title || item.name}</h2>
+              <h2 className="title" title={item.title || item.name}>
+                {truncateString(item.title || item.name)}
+              </h2>
 
               {item.country && <p className="country">{item.country}</p>}
 
