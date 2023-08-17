@@ -26,18 +26,10 @@ export const useCoinsStore = create((set) => ({
 
       if (query.length > 1) {
         const { data } = await axiosClient.get(
-          `${apiRoutesEnum.COINS.SEARCH}?query=${query}`
+          `${apiRoutesEnum.COINS.SEARCH}?keyword=${query}`
         );
 
-        const list = data.map((coin) => {
-          const { name, large, id } = coin;
-          return {
-            name,
-            image: large,
-            id,
-          };
-        });
-        set({ list, filteredList: list });
+        set({ list: data, filteredList: data });
       } else {
         const list = useCoinsStore.getState().list;
 
@@ -64,6 +56,10 @@ export const useCoinsStore = create((set) => ({
   },
 
   fetchList: async (isNextPage = false) => {
+    if (!isNextPage) {
+      set({ page: 1 });
+    }
+
     try {
       const limit = useCoinsStore.getState().limit;
 
