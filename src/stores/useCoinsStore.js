@@ -33,10 +33,10 @@ export const useCoinsStore = create((set) => ({
       } else {
         const list = useCoinsStore.getState().list;
 
-        set({ list, filteredList: list });
+        set({ list, filteredList: list, canLoadMore: false });
       }
     } catch (error) {
-      console.error("Error fetching coins:", error);
+      console.error("Error searching coins: ", error);
     }
   }, 500),
 
@@ -45,7 +45,7 @@ export const useCoinsStore = create((set) => ({
       const { data } = await axiosClient.get(apiRoutesEnum.COINS.TRENDING);
       set({ trending: data });
     } catch (error) {
-      console.error("Error searching coins:", error);
+      console.error("Error fetching coins: ", error);
     }
   },
 
